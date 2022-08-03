@@ -73,6 +73,7 @@ export default async (e: ApiGatewayEvent): Promise<ApiGatewayResponse> => {
     const body = e.body ? JSON.parse(e.body) : {};
     const chatId = getChatId(body);
     const text = body?.message?.text;
+    const messageId = body?.message?.message_id;
 
     if (!chatId) {
       console.warn(`Cannot get ChatId from update: ${e.body}`);
@@ -96,6 +97,7 @@ export default async (e: ApiGatewayEvent): Promise<ApiGatewayResponse> => {
         chat_id: chatId,
         text: botResponse,
         parse_mode: 'Markdown',
+        reply_to_message_id: messageId,
       });
       console.info(`Successfully sent response to ChatId=${chatId}`);
     }

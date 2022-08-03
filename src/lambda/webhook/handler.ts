@@ -53,6 +53,7 @@ const handleParsed = async (parsed: PriceEntity[]): Promise<string> => {
   return res.join('\r\n\r\n');
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getChatId = (body: any): number | null => {
   const msg = body?.message
     || body?.edited_message

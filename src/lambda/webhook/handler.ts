@@ -15,7 +15,7 @@ const telegram = new TelegramBotApi(TELEGRAM_BOT_TOKEN as string);
 const exchange = new ExchangeRatesApi((APILAYER_API_KEYS as string).split(','));
 const parser = new PriceParser({ modifiers, currencies });
 
-const chats = (TELEGRAM_BOT_ALLOWED_CHATS ?? '').split(',');
+const chats = (TELEGRAM_BOT_ALLOWED_CHATS ?? '').split(',').map((s) => s.trim());
 
 const RESPONSE_OK = {
   statusCode: 200,
@@ -53,6 +53,15 @@ const handleParsed = async (parsed: PriceEntity[]): Promise<string> => {
   return res.join('\r\n\r\n');
 };
 
+const getChatId = (body: any): number | null => {
+  const msg = body?.message
+    || body?.edited_message
+    || body?.channel_post
+    || body?.edited_channel_post;
+
+  return msg?.chat?.id ?? null;
+};
+
 export default async (e: ApiGatewayEvent): Promise<ApiGatewayResponse> => {
   if (e.headers?.['X-Telegram-Bot-Api-Secret-Token'] !== process.env.TELEGRAM_BOT_WEBHOOK_SECRET) {
     console.warn('Invalid X-Telegram-Bot-Api-Secret-Token');
@@ -61,8 +70,13 @@ export default async (e: ApiGatewayEvent): Promise<ApiGatewayResponse> => {
 
   try {
     const body = e.body ? JSON.parse(e.body) : {};
-    const chatId = body?.message?.chat?.id;
+    const chatId = getChatId(body);
     const text = body?.message?.text;
+
+    if (!chatId) {
+      console.warn(`Cannot get ChatId from update: ${e.body}`);
+      return RESPONSE_OK;
+    }
 
     if (chats.indexOf(String(chatId)) === -1) {
       console.warn(`ChatId=${chatId} is not whitelisted. Leaving chat...`);

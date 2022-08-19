@@ -34,7 +34,7 @@
     "typescript": "4.7.4"
   },
   "dependencies": {
-    "aws-cdk-lib": "2.36.0",
+    "aws-cdk-lib": "2.38.1",
     "constructs": "10.1.71",
     "node-fetch": "2.6.6",
     "numeral": "2.0.6",

@@ -3,6 +3,7 @@ import {
   aws_apigateway as apigw,
   aws_logs as logs,
   aws_lambda_nodejs as lambdajs,
+  Duration,
 } from 'aws-cdk-lib';
 import { Architecture, Runtime } from 'aws-cdk-lib/aws-lambda';
 
@@ -24,6 +25,7 @@ export default class WebhookConstruct extends Construct {
       logRetention: logs.RetentionDays.ONE_DAY,
       runtime: Runtime.NODEJS_16_X,
       architecture: Architecture.ARM_64,
+      timeout: Duration.seconds(6),
       bundling: {
         minify: true,
         externalModules: ['aws-sdk'],

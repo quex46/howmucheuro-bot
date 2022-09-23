@@ -46,7 +46,7 @@ const currencies: PriceCurrencyOptions[] = [
   },
   {
     asset: 'KGS',
-    symbol: 'с',
+    symbol: 'som',
     patterns: [
       'сом(?:а|у|ов|ы)?', 'som'
     ],

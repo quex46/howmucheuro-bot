@@ -48,14 +48,14 @@ const currencies: PriceCurrencyOptions[] = [
     asset: 'KGS',
     symbol: 'с',
     patterns: [
-      'сом(?:а|у|ов|ы)?', 'som'
+      'сом(?:а|у|ов|ы)?', 'som',
     ],
   },
   {
     asset: 'KZT',
     symbol: '₸',
     patterns: [
-      'тенге', 'tenge', 'теңге'
+      'тенге', 'tenge', 'теңге',
     ],
   },
 ];

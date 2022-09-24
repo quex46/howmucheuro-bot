@@ -10,9 +10,10 @@ export default class PriceCurrency {
   private readonly testRegexp: RegExp;
 
   constructor(private readonly options: PriceCurrencyOptions) {
+    const isLetter = this.options.symbol.toUpperCase() !== this.options.symbol.toLowerCase();
     this.searchPattern = [
       this.options.asset,
-      `\\${this.options.symbol}`,
+      ...(isLetter ? [] : [`\\${this.options.symbol}`]),
       ...this.options.patterns,
     ].join('|');
     this.testRegexp = new RegExp(`^(?:${this.searchPattern})$`, 'i');

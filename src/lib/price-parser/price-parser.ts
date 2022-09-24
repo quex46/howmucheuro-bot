@@ -33,7 +33,7 @@ export default class PriceParser {
     const pModifier = this.priceModifiers.map((m) => m.pattern).join('|');
     const pCurrency = this.priceCurrencies.map((c) => c.pattern).join('|');
 
-    this.searchRegexp = new RegExp(`(${pValue})\\s*(${pModifier}\\s+)?(${pCurrency})(?:\\W|$)`, 'ig');
+    this.searchRegexp = new RegExp(`(${pValue})\\s*(${pModifier}\\s+)?(${pCurrency})(?:[^a-zA-Zа-яА-Я]|$)`, 'ig');
   }
 
   parse(text: string, max = 10): PriceEntity[] {

@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "aws-cdk-lib": "2.36.0",
-    "constructs": "10.1.71",
+    "constructs": "10.1.169",
     "node-fetch": "2.6.6",
     "numeral": "2.0.6",
     "source-map-support": "0.5.21"

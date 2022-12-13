@@ -20,7 +20,7 @@
     "@types/source-map-support": "0.5.4",
     "@typescript-eslint/eslint-plugin": "5.33.0",
     "@typescript-eslint/parser": "5.33.0",
-    "aws-cdk": "2.36.0",
+    "aws-cdk": "2.54.0",
     "dotenv": "16.0.1",
     "esbuild": "0.16.4",
     "eslint": "8.21.0",

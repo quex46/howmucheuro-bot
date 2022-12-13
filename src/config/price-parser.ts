@@ -45,10 +45,17 @@ const currencies: PriceCurrencyOptions[] = [
     ],
   },
   {
-    asset: 'VND',
-    symbol: '₫',
+    asset: 'KGS',
+    symbol: 'с',
     patterns: [
-      'донг(?:а|у|ов|и)?',
+      'сом(?:а|у|ов|ы)?', 'som',
+    ],
+  },
+  {
+    asset: 'KZT',
+    symbol: '₸',
+    patterns: [
+      'тенге', 'tenge', 'теңге',
     ],
   },
 ];

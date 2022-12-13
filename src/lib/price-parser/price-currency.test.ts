@@ -21,4 +21,14 @@ describe('PriceCurrency', () => {
 
     expect(pc.test(input)).toBe(expected);
   });
+
+  test('KGS currency symbol edge case', () => {
+    const pc = new PriceCurrency({
+      asset: 'KGS',
+      symbol: 'с',
+      patterns: ['сом', 'som'],
+    });
+
+    expect(pc.test('3 сентября')).toBe(false);
+  });
 });

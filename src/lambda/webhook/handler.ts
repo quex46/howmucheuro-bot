@@ -30,7 +30,7 @@ const handleParsed = async (parsed: PriceEntity[]): Promise<string> => {
   console.info('Handling parsed %s', JSON.stringify(parsed));
 
   const res = await Promise.all(parsed.map(async (p) => {
-    const { value } = p.toFixed(2);
+    const { value } = p.value.toFixed(2);
     const { asset, symbol } = p.currency;
     const quotes = currencies.filter((a) => a.asset !== asset);
     const rates = await exchange.getExchangeRates(asset, quotes.map((q) => q.asset));

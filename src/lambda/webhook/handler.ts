@@ -35,7 +35,7 @@ const handleParsed = async (parsed: PriceEntity[]): Promise<string> => {
     const quotes = currencies.filter((a) => a.asset !== asset);
     const rates = await exchange.getExchangeRates(asset, quotes.map((q) => q.asset));
     const lines = [
-      `*${numeral(value).format('0,0[.]00')}${symbol} (${asset})* это:`,
+      `*${numeral((value).toFixed(2)).format('0,0[.]00')}${symbol} (${asset})* это:`,
     ];
     for (let i = 0; i < quotes.length; i += 1) {
       const q = quotes[i];
